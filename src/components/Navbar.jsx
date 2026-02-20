@@ -33,8 +33,8 @@ export default function Navbar() {
                             <NavLink className="nav-link" to="/about-us">Chi siamo</NavLink>
                         </li>
                     </ul>
-                    <div className="d-flex gap-3">
-                        <button onClick={() => { handleClick(budgetMode) }} className="btn btn-primary">{budgetMode ? 'Disattiva Modalità Budget' : 'Attiva Modalità Budget'}</button>
+                    <div className="d-flex gap-3 flex-wrap">
+                        <button onClick={() => { handleClick(budgetMode) }} className={budgetMode ? 'btn btn-success' : 'btn btn-primary'}>{budgetMode ? 'Disattiva Modalità Budget' : 'Attiva Modalità Budget'}</button>
 
                         <div className="d-flex gap-2">
                             <label htmlFor="userbudget" className="text-white">Budget</label>
