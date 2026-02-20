@@ -1,20 +1,30 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { useBudget } from "../contexts/BudgetContext"
+
 
 export default function ProductsPage() {
 
-    const [products, setProducts] = useState([])
-    const [error, setError] = useState(false)
+    const { budgetMode, maxPrice } = useBudget();
+
+    const [products, setProducts] = useState([]);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         axios.get("https://fakestoreapi.com/products")
             .then((res) => {
-                setProducts(res.data)
-                console.log(res.data)
+                setProducts(res.data);
+                console.log(res.data);
             })
             .catch((err) => (setError(true)));
-    }, [])
+    }, []);
+
+    const filteredProducts = budgetMode
+        ? products.filter(product => product.price <= maxPrice)
+        : products;
+
+
 
     return (
         <>
@@ -23,7 +33,7 @@ export default function ProductsPage() {
             </>}
             {error === false && <div className="container-fluid py-4 bg-orange">
                 <div className="row g-3 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
-                    {products.map((product) => (
+                    {filteredProducts.map((product) => (
                         <div key={product.id} className="col">
                             <Link to={`/products/${product.id}`} className="text-decoration-none">
                                 <div className="card pt-3 h-100">
