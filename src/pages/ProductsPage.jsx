@@ -32,6 +32,7 @@ export default function ProductsPage() {
                 <div className="alert alert-danger my-3 text-center">Si è verificato un error durante il caricamento. Riprova.</div>
             </>}
             {error === false && <div className="container-fluid py-4 bg-orange">
+                <h1 className="mb-4">Prodotti trovati {`(${filteredProducts.length})`}</h1>
                 <div className="row g-3 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
                     {filteredProducts.map((product) => (
                         <div key={product.id} className="col">
