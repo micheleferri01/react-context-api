@@ -20,9 +20,9 @@ export default function ProductsPage() {
             .catch((err) => (setError(true)));
     }, []);
 
-    const filteredProducts = budgetMode
+    const filteredProducts = maxPrice? (budgetMode
         ? products.filter(product => product.price <= maxPrice)
-        : products;
+        : products) : products;
 
 
 

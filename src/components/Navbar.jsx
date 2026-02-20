@@ -5,10 +5,10 @@ import { useBudget } from "../contexts/BudgetContext"
 
 export default function Navbar() {
 
-    const {budgetMode, setBudgetMode} = useBudget ();
+    const { budgetMode, setBudgetMode, maxPrice, setMaxPrice } = useBudget();
 
-    function handleClick (budgetMode){
-        if(budgetMode === true) {
+    function handleClick(budgetMode) {
+        if (budgetMode === true) {
             setBudgetMode(false)
         } else {
             setBudgetMode(true)
@@ -33,8 +33,17 @@ export default function Navbar() {
                             <NavLink className="nav-link" to="/about-us">Chi siamo</NavLink>
                         </li>
                     </ul>
+                    <div className="d-flex gap-3">
+                        <button onClick={() => { handleClick(budgetMode) }} className="btn btn-primary">{budgetMode ? 'Disattiva Modalità Budget' : 'Attiva Modalità Budget'}</button>
 
-                    <button onClick={() => { handleClick(budgetMode) }} className="btn btn-primary">{budgetMode ? 'Disattiva Modalità Budget' : 'Attiva Modalità Budget'}</button>
+                        <div className="d-flex gap-2">
+                            <label htmlFor="userbudget" className="text-white">Budget</label>
+                            <input type="number" name="budget" id="userbudget" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className="form-control" min={0}/>
+                        </div>
+
+                        
+                    </div>
+
                 </div>
             </div>
         </nav>
