@@ -1,7 +1,19 @@
 import { Link, NavLink } from "react-router-dom"
+import { useBudget } from "../contexts/BudgetContext"
+
 
 
 export default function Navbar() {
+
+    const {budgetMode, setBudgetMode} = useBudget ();
+
+    function handleClick (budgetMode){
+        if(budgetMode === true) {
+            setBudgetMode(false)
+        } else {
+            setBudgetMode(true)
+        }
+    }
     return (
         <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div className="container-fluid fs-5">
@@ -21,6 +33,8 @@ export default function Navbar() {
                             <NavLink className="nav-link" to="/about-us">Chi siamo</NavLink>
                         </li>
                     </ul>
+
+                    <button onClick={() => { handleClick(budgetMode) }} className="btn btn-primary">{budgetMode ? 'Disattiva Modalità Budget' : 'Attiva Modalità Budget'}</button>
                 </div>
             </div>
         </nav>
